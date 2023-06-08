@@ -62,6 +62,8 @@ function Header() {
   
   type Age = number | string;
 
+  // when strictNullChecks is on, we must check for null and undefined values before using methods or properties on that value
+  // strictMullChecks on by default when strict: true in config
   function printInfo(task: Task, age: Age, parent: Parent) {
     console.log(task.title);
     if (task.subtasks !== undefined) {
@@ -97,6 +99,16 @@ function Header() {
       married: false
     }
   );
+
+  // Enums - allow you to define a set of named constants (TypeScript provides both numeric and string-based enums)
+  // number enums have an auto-incrementing behavior, string enums do not (must all be defined)
+
+  // void - represents the return value of functions which don't return a value
+  // the inferred return type below is 'void'
+  function doNothing() {
+    return;
+  }
+  doNothing();
 
   return (
     <header>
