@@ -45,35 +45,58 @@ function Header() {
   printAge(26 + " years old")
 
   // Type Aliases - a name for any type (to use the same type more than once and refer to it by a certain name)
+  // Interface declaration - another way to name an object type (replace 'type' keyword with 'interface')
+  // (Type cannot be re-opened to add new properties VS an interface is always extendable)
   type Task = {
     title: string;
     subtasks?: string[];
-  };
+  }
+  interface Person {
+    name: string;
+    age: number;
+  }
+  interface Parent extends Person {
+    children: string[];
+    married: boolean;
+  }
+  
   type Age = number | string;
 
-  function printInfo(task: Task, age: Age) {
+  function printInfo(task: Task, age: Age, parent: Parent) {
     console.log(task.title);
     if (task.subtasks !== undefined) {
       task.subtasks.forEach(subtask => {
         console.log("-" + subtask);
       });
     }
-    console.log("You better hurry! You are already " + age + ", ... running low on time.")
+    console.log(parent.name + ", you better hurry! You are already " + age + ", ... running low on time.")
   }
   printInfo(
     {
       title: "Grocery Shopping",
       subtasks: ["Trader Joes", "Sam's Club", "Kroger"]
     },
-    36
-  )
+    36, 
+    {
+      name: "Jessica",
+      age: 36,
+      children: ["brandon", "carly"],
+      married: true
+    }
+  );
   printInfo(
     {
       title: "Get the laundry done",
       subtasks: []
     },
-    "twenty nine"
-  )
+    "twenty nine",
+    {
+      name: "Brianna",
+      age: 29,
+      children: ["Alyssa"],
+      married: false
+    }
+  );
 
   return (
     <header>
